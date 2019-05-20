@@ -12,13 +12,15 @@ namespace ScinReport.Models
         public string Name { get; set; }
         public string Patronymic { get; set; } //По-Батькові
         public string Position { get; set; }
-        public string Chair { get; set; }
         public int Year_of_birth { get; set; }
-        public int Year_of_graduation { get; set; }
-        public string Degree { get; set; }
-        public int Year_of_Protection { get; set; }
-        public string Academic_status { get; set; }
-        public int Year_of_Assignment { get; set; }
+        public int Year_of_graduation { get; set; }//закінчення внз
+        public int Year_of_Protection { get; set; }//рік захисту
+        public string Academic_status { get; set; }//вчене звання
+        public int Year_of_Assignment { get; set; }//рік присвоєння вченого звання
+        public string Degree { get; set; }//ступінь
+       
+       
+     
         public int CafedraId { get; set; }
         virtual public Cafedra Cafedra { get; set; }
         public int UserId { get; set; }

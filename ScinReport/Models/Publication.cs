@@ -8,9 +8,9 @@ namespace ScinReport.Models
     public class Publication
     {
         public int Id { get; set; }
-        public string Text { get; set; }
-        public int CafedraId { get; set; }
-        virtual public Cafedra Cafedra { get; set; }
-        public string Years { get; set; }
+        public int TypeId { get; set; }
+        virtual public WorkEnum Type { get; set; }
+        public DateTime Date { get; set; }
+        public string Status { get; set; }
     }
 }
