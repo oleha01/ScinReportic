@@ -7,7 +7,7 @@ namespace RolesInitializerApp
     public class RoleInitializer
     {
         public static async Task InitializeAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
-        {ScinReport
+        {
             string adminEmail = "admin@gmail.com";
             string password = "_Aa123456";
             if (await roleManager.FindByNameAsync("admin") == null)
