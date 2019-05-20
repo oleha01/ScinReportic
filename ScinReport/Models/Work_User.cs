@@ -9,7 +9,7 @@ namespace ScinReport.Models
     {
         public int Id { get; set; }
         public int WorkId { get; set; }
-        virtual public Work Work { get; set; }
+        virtual public Publication Publication { get; set; }
         public int UserId { get; set; }
         virtual public Teacher User { get; set; }
     }
