@@ -22,6 +22,17 @@ namespace ScinReport.Controllers
         {
             return View();
         }
+        //Зверніть увагу, що я передала об'єкт публікації та назву файлу Html,
+        //який я хотіла би відобразити у форматі PDF
+        public ActionResult GetPdf(string code)
+        {
+            //var unitOfWork = this.ControllerContext.GetUnitOfWork<BlogUnitOfWork>();
+            //var repository = unitOfWork.GetRepository<PostRepository>();
+            //var post = repository.GetByHashId(code);
+            //var builder = new PdfBuilder(post, Server.MapPath("/Views/Report/Pdf.cshtml"));
+            //return builder.GetPdf();
+            return View();//просто написало щоб не вибивало помилки
+        }
         public void GeneratePDFTest()
         {
             FileStream fs = new FileStream("Chapter1_Example1.pdf", FileMode.Create, FileAccess.Write, FileShare.None);

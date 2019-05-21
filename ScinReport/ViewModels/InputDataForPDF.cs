@@ -3,11 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RazorEngine;
+using RazorEngine.Text;
 
 namespace ScinReport.ViewModels
 {
     public class InputDataForPDF
     {
+        
         public int Id { get; set; }
         public string Punct1 { get; set; }
         public string Punct2 { get; set; }

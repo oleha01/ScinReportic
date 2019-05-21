@@ -1,0 +1,25 @@
+﻿@model ScinReport.ViewModels.InputDataForPDF
+@{
+    ViewData["Title"] = "Pdf";
+}
+
+<html>
+
+<body>
+
+    <h2>@Model.Punct1</h2>
+    <h2>@Model.Punct2</h2>
+    <h2>@Model.Punct3</h2>
+    <h2>@Model.Punct4</h2>
+    <h2>@Model.Punct5</h2>
+
+    <h2>@Model.Punct7_1</h2>
+    <h2>@Model.Punct7_2</h2>
+    <h2>@Model.Punct8</h2>
+    <h2>@Model.Punct9</h2>
+    <h2>@Model.Punct10</h2>
+    @*@Model.PublishedOn.ToString()
+    <h3>@Model.Abstract</h3>
+    @(new RawString(Model.Description))*@
+</body>
+</html>
