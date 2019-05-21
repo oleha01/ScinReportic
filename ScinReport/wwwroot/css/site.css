@@ -11,6 +11,10 @@ body {
 .Exit {
     background-color:black;
     color:aliceblue;
+    position:absolute;
+    right:5px;
+    top:7px;
+    
 
 }
 /* Carousel */
@@ -34,8 +38,10 @@ body {
     position: absolute;
     right: 0px;
     padding-top: 10px;
+    padding-right:100px;
     
 }
+.gmail{color:aliceblue;}
 .letter:hover {
     text-decoration: none;
     color:aliceblue;
