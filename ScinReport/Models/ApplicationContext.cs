@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
+using ScinReport.ViewModels;
+
 namespace ScinReport.Models
 {
     public class ApplicationContext : IdentityDbContext<User>
@@ -20,6 +22,7 @@ namespace ScinReport.Models
         public DbSet<Work_User> Work_Users  { get; set; }
         public DbSet<WorkEnum> Work_Enums  { get; set; }
     
+        public DbSet<InputDataForPDF> DataForPDFs { get; set; }
 public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
