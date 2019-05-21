@@ -64,6 +64,13 @@
                 <span asp-validation-for="Punct10" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsReady" /> @Html.DisplayNameFor(model => model.IsReady)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>
