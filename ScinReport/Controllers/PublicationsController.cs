@@ -6,14 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ScinReport.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace ScinReport.Controllers
 {
     public class PublicationsController : Controller
     {
         private readonly ApplicationContext _context;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
-        public PublicationsController(ApplicationContext context)
+        public PublicationsController(ApplicationContext context, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _context = context;
         }
@@ -36,7 +39,7 @@ namespace ScinReport.Controllers
             {
                 return NotFound();
             }
-
+            
             var publication = await _context.Publications
                 .Include(p => p.Type)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -49,11 +52,10 @@ namespace ScinReport.Controllers
         }
 
         // GET: Publications/Create
-        public IActionResult Create()
+        public async  Task<IActionResult> Create()
         {
-            ViewData["TypeId"] = new SelectList(_context.Work_Enums, "Id", "Id");
-           
-
+            ViewData["TypeId"] = new SelectList(_context.Work_Enums, "Id", "Name");
+            ViewBag.Users = new SelectList(_context.Users , "Id","Name"+"SurName");
             return View();
         }
 
@@ -62,14 +64,27 @@ namespace ScinReport.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TypeId,Date,Status")] Publication publication)
+        public async Task<IActionResult> Create([Bind("Id,TypeId,Date,Status")] Publication publication, params int[] selectedLists)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(publication);
                 await _context.SaveChangesAsync();
+                var work_user = new Work_User { WorkId=publication.Id, UserId = int.Parse(_userManager.GetUserId(User))};
+                _context.Work_Users.Add(work_user);
+                foreach(var el in selectedLists)
+                {
+                    var use = _context.Users.FirstOrDefault(p => p.Id == el.ToString());
+                    if (use!=null)
+                    {
+                        var work_user1 = new Work_User { WorkId = publication.Id, UserId = int.Parse(use.Id) };
+                        _context.Work_Users.Add(work_user1);
+                    }
+                }
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+           
             ViewData["TypeId"] = new SelectList(_context.Work_Enums, "Id", "Id", publication.TypeId);
             return View(publication);
         }

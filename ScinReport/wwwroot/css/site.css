@@ -7,11 +7,16 @@ body {
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
 
+.Exit {
+    background-color:black;
+    color:aliceblue;
+    position:absolute;
+    right:5px;
+    top:7px;
+    
+
+}
 /* Carousel */
 .carousel-caption p {
     font-size: 20px;
@@ -27,7 +32,25 @@ body {
 #qrCode {
     margin: 15px;
 }
-
+.in {
+    padding: 2%;
+    margin-left: 20px;
+    position: absolute;
+    right: 0px;
+    padding-top: 10px;
+    padding-right:100px;
+    
+}
+.gmail{color:aliceblue;}
+.letter:hover {
+    text-decoration: none;
+    color:aliceblue;
+}
+.letter 
+{
+    color:aliceblue;
+  
+}
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
@@ -35,8 +58,7 @@ body {
         display: none;
     }
 }
-.navbar-header
-{
-
-    width:100%;
+.container {
+  padding:1%;
+  font-size:20px;
 }
