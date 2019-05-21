@@ -62,3 +62,21 @@ body {
   padding:1%;
   font-size:20px;
 }
+.body-content {
+    padding:50px;
+}
+a {
+    color:aliceblue;
+    text-decoration: none; /*убираем подчеркивание текста ссылок*/
+}
+ul {
+    
+    list-style: none; /*убираем маркеры списка*/
+    margin: 0; /*убираем верхнее и нижнее поле, равное 1em*/
+    padding-left: 0; /*убираем левый отступ, равный 40px*/
+}
+li {
+    display: inline;
+    padding:10px;
+
+}
