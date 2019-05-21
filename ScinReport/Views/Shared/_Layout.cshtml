@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ScinReport</title>
+    <title>@ViewData["Title"]</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -26,22 +26,30 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ScinReport</a>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <p>@User.Identity.Name</p>
+                <div class="in">
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class=""></a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <p>@User.Identity.Name</p>
 
-                    <form method="post" asp-controller="Account" asp-action="LogOff">
-                        <input type="submit" value="Вихід" />
-                    </form>
-                }
-                else
-                {
-                    <a asp-controller="Account" asp-action="Login">Вхід</a>
-                    <a asp-controller="Account" asp-action="Register">Реєстрація</a>
-                }
+                        <form method="post" asp-controller="Account" asp-action="LogOff">
+                            <input type="submit" class="Exit" value="Вихід" />
+                        </form>
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="Login"><span class="letter">Вхід</span></a>
+                        <a asp-controller="Account" asp-action="Register"><span class="letter">Реєстрація</span></a>
+                    }
+                    </div>
+                </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                </ul>
             </div>
-       
         </div>
     </nav>
 
@@ -52,12 +60,9 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2019 - ScinReport</p>
-        </footer>
+                   </footer>
     </div>
 
-  
-    
 
     @RenderSection("Scripts", required: false)
 </body>
