@@ -1,0 +1,90 @@
+﻿@model IEnumerable<ScinReport.ViewModels.InputDataForPDF>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Punct1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Punct2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Punct3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Punct4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Punct5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Punct7_1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Punct7_2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Punct8)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Punct9)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Punct10)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Punct1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Punct2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Punct3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Punct4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Punct5)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Punct7_1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Punct7_2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Punct8)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Punct9)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Punct10)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Generate" asp-route-id="@item.Id">Generate Report</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
