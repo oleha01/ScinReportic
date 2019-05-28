@@ -1,0 +1,128 @@
+﻿@model ScinReport.ViewModels.InputDataForPDF
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>InputDataForPDF</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <h5>
+                    Участь у науково-дослідній тематиці підрозділу − шифр теми,
+                    категорія (держбюджетна, госпдоговірна, в межах робочого часу),
+                    назва, стисло зміст виконаної роботи
+                </h5>
+                @*<label asp-for="Punct1" class="control-label"></label>*@
+                <input asp-for="Punct1" class="form-control" />
+                <span asp-validation-for="Punct1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h5>
+                    Участь у виконанні індивідуальних або колективних ґрантів
+                    (окрім ґрантів на поїздки)
+                </h5>
+                
+                <input asp-for="Punct2" class="form-control" />
+                <span asp-validation-for="Punct2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h5>Наукові стажування.</h5>
+                
+                <input asp-for="Punct3" class="form-control" />
+                <span asp-validation-for="Punct3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h5>
+                    Наукове керівництво аспірантами, здобувачами,
+                    наукове консультування при написанні докторських дисертацій.
+                    Захист дисертацій аспірантами, докторантами
+                    (прізвище, назва дисертації, спеціальність, дата захисту,
+                    рік закінчення аспірантури, докторантури).
+                </h5>
+                
+                <input asp-for="Punct4" class="form-control" />
+                <span asp-validation-for="Punct4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h5>
+                    Керівництво студентською науковою роботою,
+                    спільні публікації, керівництво студентськими гуртками,
+                    підготовка студентів для участі у Всеукраїнських конкурсах
+                    студентських наукових робіт тощо.
+                </h5>
+                
+                <input asp-for="Punct5" class="form-control" />
+                <span asp-validation-for="Punct5" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h5>
+                    Заявки на винахід (корисну модель)
+                    (на видачу патенту на винахід (корисну модель))
+                    − автори, назва, № заявки, дата подачі, заявник(и)
+                </h5>
+                
+                <input asp-for="Punct7_1" class="form-control" />
+                <span asp-validation-for="Punct7_1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h5>
+                    Патенти на винахід (корисну модель)
+                    − автори, назва, № патенту, дата видачі, заявник(и).
+                </h5>
+                
+                <input asp-for="Punct7_2" class="form-control" />
+                <span asp-validation-for="Punct7_2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h5>
+                    Рецензування та опонування дисертацій,
+                    відгуки на автореферати, експертні висновки.
+                </h5>
+                
+                <input asp-for="Punct8" class="form-control" />
+                <span asp-validation-for="Punct8" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h5>
+                    Членство у спеціалізованих вчених,
+                    експертних радах, редколегіях наукових журналів тощо.
+                </h5>
+                
+                <input asp-for="Punct9" class="form-control" />
+                <span asp-validation-for="Punct9" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h5>Інше.</h5>
+                
+                <input asp-for="Punct10" class="form-control" />
+                <span asp-validation-for="Punct10" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsReady" /> @Html.DisplayNameFor(model => model.IsReady)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+
+        </form>
+    </div>
+</div>
+@*<p>
+    <a asp-action="Create">Generate Report</a>
+</p>*@
+<div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+</div>

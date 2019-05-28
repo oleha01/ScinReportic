@@ -1,0 +1,84 @@
+﻿@model ScinReport.ViewModels.InputDataForPDF
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>InputDataForPDF</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Punct1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Punct1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Punct2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Punct2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Punct3)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Punct3)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Punct4)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Punct4)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Punct5)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Punct5)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Punct7_1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Punct7_1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Punct7_2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Punct7_2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Punct8)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Punct8)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Punct9)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Punct9)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Punct10)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Punct10)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsReady)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsReady)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

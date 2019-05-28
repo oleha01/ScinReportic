@@ -1,0 +1,83 @@
+﻿@model ScinReport.ViewModels.InputDataForPDF
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>InputDataForPDF</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Punct1" class="control-label"></label>
+                <input asp-for="Punct1" class="form-control" />
+                <span asp-validation-for="Punct1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Punct2" class="control-label"></label>
+                <input asp-for="Punct2" class="form-control" />
+                <span asp-validation-for="Punct2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Punct3" class="control-label"></label>
+                <input asp-for="Punct3" class="form-control" />
+                <span asp-validation-for="Punct3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Punct4" class="control-label"></label>
+                <input asp-for="Punct4" class="form-control" />
+                <span asp-validation-for="Punct4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Punct5" class="control-label"></label>
+                <input asp-for="Punct5" class="form-control" />
+                <span asp-validation-for="Punct5" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Punct7_1" class="control-label"></label>
+                <input asp-for="Punct7_1" class="form-control" />
+                <span asp-validation-for="Punct7_1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Punct7_2" class="control-label"></label>
+                <input asp-for="Punct7_2" class="form-control" />
+                <span asp-validation-for="Punct7_2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Punct8" class="control-label"></label>
+                <input asp-for="Punct8" class="form-control" />
+                <span asp-validation-for="Punct8" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Punct9" class="control-label"></label>
+                <input asp-for="Punct9" class="form-control" />
+                <span asp-validation-for="Punct9" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Punct10" class="control-label"></label>
+                <input asp-for="Punct10" class="form-control" />
+                <span asp-validation-for="Punct10" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsReady" /> @Html.DisplayNameFor(model => model.IsReady)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
