@@ -7,11 +7,7 @@ namespace ScinReport_Tests
 {
     public class PublicationTest
     {
-        public int Id { get; set; }
-        public int TypeId { get; set; }
-        virtual public WorkEnum Type { get; set; }
-        public DateTime Date { get; set; }
-        public string Status { get; set; }
+        
         [Fact]
         public void CanChangePublicationTypeId()
         {
