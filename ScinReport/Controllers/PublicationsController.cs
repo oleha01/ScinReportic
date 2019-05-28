@@ -55,7 +55,7 @@ namespace ScinReport.Controllers
         public async  Task<IActionResult> Create()
         {
             ViewData["TypeId"] = new SelectList(_context.Work_Enums, "Id", "Name");
-            ViewBag.Users = new SelectList(_context.Users , "Id","Name"+"SurName");
+            //ViewBag.Users = new SelectList(_context.Users , "Id","Name"+"SurName");
             return View();
         }
 
@@ -70,8 +70,8 @@ namespace ScinReport.Controllers
             {
                 _context.Add(publication);
                 await _context.SaveChangesAsync();
-                var work_user = new Work_User { WorkId=publication.Id, UserId = int.Parse(_userManager.GetUserId(User))};
-                _context.Work_Users.Add(work_user);
+             //   var work_user = new Work_User { WorkId=publication.Id, UserId = int.Parse(_userManager.GetUserId(User))};
+             //   _context.Work_Users.Add(work_user);
                 foreach(var el in selectedLists)
                 {
                     var use = _context.Users.FirstOrDefault(p => p.Id == el.ToString());
@@ -81,7 +81,7 @@ namespace ScinReport.Controllers
                         _context.Work_Users.Add(work_user1);
                     }
                 }
-                await _context.SaveChangesAsync();
+                //await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
            
