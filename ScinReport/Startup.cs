@@ -1,11 +1,11 @@
-﻿using ScinReport.Models;
+﻿using ScinReport.Models.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using ScinReport.Models;
 namespace ScinReport
 {
     public class Startup
@@ -25,7 +25,7 @@ namespace ScinReport
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationContext>();
-
+            services.AddTransient<IPublicationRepositories, FakePublicationRepository>();//for UnitTest
             services.AddMvc();
         }
 

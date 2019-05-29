@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ScinReport.Models;
 using Microsoft.AspNetCore.Identity;
+using ScinReport.Models.Repositories;
 
 namespace ScinReport.Controllers
 {
@@ -15,11 +16,19 @@ namespace ScinReport.Controllers
         private readonly ApplicationContext _context;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-
+        //public IRepository Repository = SimpleRepository.SharedRepository;
         public PublicationsController(ApplicationContext context, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _context = context;
         }
+
+        //For test
+        private IPublicationRepositories repository;
+        public PublicationsController(IPublicationRepositories repo)
+        {
+            repository = repo;
+        }
+        public ViewResult List() => View(repository.publications);
         public IActionResult Publication_func()
         {
 
