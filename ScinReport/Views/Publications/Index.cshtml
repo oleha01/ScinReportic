@@ -1,47 +1,121 @@
 ﻿@model IEnumerable<ScinReport.Models.Publication>
-
+@using Microsoft.AspNetCore.Identity;
+@using Scinefic.Manage;
+@using ScinReport.Models;
+@using System.Security.Claims;
+@inject UserManager<User> _userManager
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Публікації";
 }
 
-<h2>Index</h2>
+<h2>Публікації</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">
+        <button type="submit" class="btn btn-success">Створити</button>
+    </a>
 </p>
+@{ string date1 = "";
+    string date2 = "";
+    if (ViewBag.date1 != null)
+    {
+        if (ViewBag.date1.Year != 0001)
+        {
+            date1 = ViewBag.date1.ToString("yyyy-MM-dd");
+        }
+    }
+    if (ViewBag.date2 != null)
+    {
+        if (ViewBag.date2.Year != 0001)
+        {
+            date2 = ViewBag.date2.ToString("yyyy-MM-dd");
+        }
+    }
+}
+@{
+    int i = 0;
+    string valueinput = "";
+    foreach (var el in Model)
+    {
+        valueinput += '0';
+    }
+}
+
+
+<th>
+    <form asp-action="Date">
+        Від
+        <input name="date1" class="date-input" type="date" value="@date1" />
+        До
+        <input name="date2" class="date-input" type="date" value="@date2" />
+        <button type="submit" class="btn btn-secondary">Показати</button>
+    </form>
+</th>
+<div class="create-zvit-btn">
+    <form asp-action="Zvit">
+        <input type="text" id="textcheckbox" name="textcheckbox" value="@valueinput" hidden />
+        <input type="date" value="@date1" hidden />
+        <input type="date" value="@date2" hidden />
+        <button class="btn btn-warning">Створити звіт</button>
+    </form>
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Type)
+                <input type="checkbox" onclick="checkAll(this);" />
+            </th>
+            @if ((await _userManager.GetUsersInRoleAsync("admin")).FirstOrDefault(p => p.Id == _userManager.GetUserId(User)) != null)
+            {
+                <th>
+                    Автор
+                </th>
+            }
+            <th>
+                Тип
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                Дата створення
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                Текст
             </th>
-            <th></th>
+
         </tr>
+
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <input class="checkbox" id="checkbox_@i" onchange="checkOne(@i,this); " type="checkbox" />
+                </td>
+                @if ((await _userManager.GetUsersInRoleAsync("admin")).FirstOrDefault(p => p.Id == _userManager.GetUserId(User)) != null)
+                {
+                    <td>
+                        @ViewBag.userWhoDoneThisPublication[i]    
+                    </td>
+                }
+                <td>
+                    @item.Type.Name
+                </td>
+                <td>
+                    @item.Date.ToString("yyyy-MM-dd")
+                </td>
+                <td>
+                    @item.Text
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Редагувати</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Деталі</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Видалити</a>
+                </td>
+            </tr>
+            i++;
+        }
     </tbody>
 </table>
+<script src="~/js/site.js"></script>

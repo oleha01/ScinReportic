@@ -8,9 +8,9 @@ namespace ScinReport.Models
     public class Work_User
     {
         public int Id { get; set; }
-        public int WorkId { get; set; }
+        public int PublicationId { get; set; }
         virtual public Publication Publication { get; set; }
-        public int UserId { get; set; }
-        virtual public Teacher User { get; set; }
+        public string UserId { get; set; }
+        virtual public User User { get; set; }
     }
 }

@@ -1,0 +1,191 @@
+﻿@model ScinReport.Models.Zvit
+@{
+    ViewData["Title"] = "Звіт";
+}
+@{
+    string s = " ";
+}
+<form asp-action="CreateZvit">
+    <h1> Індивідуальний звіт про наукову роботу у році</h1>
+    <br>
+    <p>
+        @*(посада, кафедра (підрозділ), прізвище, ім’я, по батькові)*@
+        @ViewBag.Teacher.SurName @s @ViewBag.Teacher.Name @s  @ViewBag.Teacher.Patronymic<br>
+        Відомості про вченого:<br>
+        Рік народження @ViewBag.Teacher.Year_of_birth<br>
+        Рік закінчення ВНЗ @ViewBag.Teacher.Year_of_graduation<br>
+        Науковий ступінь, рік захисту @ViewBag.Teacher.Year_of_Protection<br>
+        Вчене звання, рік присвоєння @ViewBag.Teacher.Year_of_Assignment<br>
+        @if (Model.t1 != null)
+        {
+            <div class="form-group">
+                1 Участь у науково-дослідній тематиці підрозділу − шифр теми, категорія (держбюджетна, госпдоговірна, в межах робочого часу), назва, стисло зміст виконаної роботи (до семи рядків).
+                @Model.t1
+            </div>
+        }
+        @if (Model.t2 != null)
+        {
+            <div class="form-group">
+                2 Участь у виконанні індивідуальних або колективних ґрантів (окрім ґрантів на поїздки) − згідно з додатком 3.<br>
+                @Model.t2
+            </div>
+        }
+        @if (Model.t3 != null)
+        {
+            <div class="form-group">
+                3 Наукові стажування.<br>
+                @Model.t3
+            </div>
+        }
+        @if (Model.t4 != null)
+        {
+            <div class="form-group">
+                4 Наукове керівництво аспірантами, здобувачами, наукове консультування при написанні докторських дисертацій. Захист дисертацій аспірантами, докторантами (прізвище, назва дисертації, спеціальність, дата захисту, рік закінчення аспірантури, докторантури).<br>
+                @Model.t4
+            </div>
+        }
+        @if (Model.t5 != null)
+        {
+            <div class="form-group">
+                5 Керівництво студентською науковою роботою, спільні публікації, керівництво студентськими гуртками, підготовка студентів для участі у Всеукраїнських конкурсах студентських наукових робіт тощо.<br>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="t5"></textarea>
+            </div>
+        }
+        6
+    </p>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Загальна кількість наукових публікацій
+                </th>
+                <th>
+                    Разом
+                </th>
+                <th>
+                    За звітний період
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var el in ViewBag.ForTable)
+            {
+                <tr>
+
+                    <td>
+                        @el.Name
+                    </td>
+                    <td>
+                        @el.CountAll
+                    </td>
+                    <td>
+                        @el.CountInTime
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @{
+        int i = 1;
+    }
+    <p>
+        6.1 Праці, що вийшли з друку (бібліографічний опис згідно з державним стандартом):<br>
+        6.1.1 Монографії;
+        @foreach (var el in ViewBag.list)
+        {
+            if (el.Type.Name == "Монографії")
+            {
+            <p>@i  . @el.Text </p>
+            i++;
+        }
+
+    }
+        6.1.2 Підручники;<br>
+        @foreach (var el in ViewBag.list)
+        {
+            if (el.Type.Name == "Підручники")
+            {
+                <p>@i  . @el.Text </p>
+                i++;
+            }
+        }
+        6.1.3 Навчальні посібники;<br>
+        @foreach (var el in ViewBag.list)
+        {
+            if (el.Type.Name == "Навчальні посібники")
+            {
+                <p>@i  . @el.Text </p>
+                i++;
+            }
+        }
+        6.1.4 Інші наукові видання (словники, переклади наукових праць, науковий коментар, бібліографічний покажчик тощо);<br>
+        @foreach (var el in ViewBag.list)
+        {
+            if (el.Type.Name == "Інші наукові видання")
+            {
+                <p>@i  . @el.Text </p>
+                i++;
+            }
+        }
+        6.1.5 Статті:<br>
+        @foreach (var el in ViewBag.list)
+        {
+            if (el.Type.Name == "Статті")
+            {
+                <p>@i  . @el.Text </p>
+                i++;
+            }
+        }
+        6.1.6 Тези доповідей:<br>
+        @foreach (var el in ViewBag.list)
+        {
+            if (el.Type.Name == "Тези доповідей ")
+            {
+                <p>@i  . @el.Text </p>
+                i++;
+            }
+        }
+        <div class="form-group">
+            6.1.7 Перелік міжнародних конференцій за кордоном, на яких представлено результати досліджень.<br>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="t6"></textarea>
+        </div>
+        7 Патентно-ліцензійна діяльність:<br>
+        7.1 Заявки на винахід (корисну модель) (на видачу патенту на винахід (корисну модель)) − автори, назва, № заявки, дата подачі, заявник(и);<br>
+        7.2 Патенти на винахід (корисну модель) − автори, назва, № патенту, дата видачі, заявник(и).<br>
+        @if (Model.t8 != null)
+        {
+            <div class="form-group">
+                8 Рецензування та опонування дисертацій, відгуки на автореферати, експертні висновки.<br>
+                @Model.t8
+            </div>
+        }
+        @if (Model.t9 != null)
+        {
+            <div class="form-group">
+                9 Членство у спеціалізованих вчених, експертних радах, редколегіях наукових журналів тощо.<br>
+                @Model.t9
+            </div>
+        }
+        @if (Model.t10 != null)
+        {
+            <div class="form-group">
+                10 Інше.
+                @Model.t10
+            </div>
+        }
+        </p>
+
+        <p>Підпис_______________</p>
+
+        <p>
+            Звіт заслухано і затверджено на засіданні кафедри (підрозділу) _____________<br>
+            (протокол/дата)
+        </p>
+
+        <p>
+            Завідувач кафедри (керівник підрозділу)_______________<br>
+            (підпис)<br>
+        </p>
+
+        <button class="btn btn-success">Створити звіт</button>
+    </form>

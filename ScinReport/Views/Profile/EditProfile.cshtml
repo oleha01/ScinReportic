@@ -1,0 +1,58 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using Scinefic.Manage
+@inject UserManager<User> _userManager
+@model ScinReport.Models.User
+
+<div class="row">
+    <div class="col-md-3">
+        <ul class="nav nav-pills nav-stacked">
+            <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a href="/Account/EditProfile/@_userManager.GetUserId(User)">Profile</a></li>
+            <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a id="change-password">Password</a></li>
+            @*@if (hasExternalLogins)
+                {
+                    <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a id="external-login">External logins</a></li>
+                }*@
+            <li class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)"><a>Two-factor authentication</a></li>
+            <li class="@ManageNavPages.PersonalDataNavClass(ViewContext)"><a>Personal data</a></li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="SurName" class="control-label">Прізвище</label>
+                <select asp-for="SurName" class="form-control" asp-items="ViewBag.TypeId"></select>
+                <span asp-validation-for="SurName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Ім'я</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Patronymic" class="control-label">По-Батькові</label>
+                <input asp-for="Patronymic" class="form-control" />
+                <span asp-validation-for="Patronymic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year_of_birth" class="control-label">Рік народження</label>
+                <input asp-for="Year_of_birth" class="form-control" />
+                <span asp-validation-for="Year_of_birth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year_of_graduation" class="control-label">Рік закінчення ВНЗ</label>
+                <input asp-for="Year_of_graduation" class="form-control" />
+                <span asp-validation-for="Year_of_graduation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Academic_status" class="control-label">Вчене звання</label>
+                <input asp-for="Academic_status" class="form-control" />
+                <span asp-validation-for="Academic_status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>

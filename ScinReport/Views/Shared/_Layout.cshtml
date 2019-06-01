@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@using Scinefic.Manage;
+@using System.Security.Claims;
+@inject UserManager<User> _userManager
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -41,14 +45,21 @@
                         <a asp-controller="Account" asp-action="Login"><span class="letter">Вхід</span></a>
                         <a asp-controller="Account" asp-action="Register"><span class="letter">Реєстрація</span></a>
                     }
-                    </div>
                 </div>
+            </div>
             <div class="menu">
                 <ul>
-                    <li><a href="/publications">Публікації</a></li>
-                    <li><a href="/users">Користувачі</a></li>
-                    <li><a href="/roles">Ролі</a></li>
-                   
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="/publications">Публікації</a></li>
+                        if ((await _userManager.GetUsersInRoleAsync("admin")).FirstOrDefault(p => p.Id == _userManager.GetUserId(User))!=null)
+                        {
+                            <li><a href="/users">Користувачі</a></li>
+                            <li><a href="/roles">Ролі</a></li>
+                            <li><a href="/WorkEnums">WorkEnums</a></li>
+                        }
+                    }
+
                 </ul>
             </div>
         </div>
@@ -60,8 +71,7 @@
 
         @RenderBody()
         <hr />
-        <footer>
-                   </footer>
+        <footer></footer>
     </div>
 
 

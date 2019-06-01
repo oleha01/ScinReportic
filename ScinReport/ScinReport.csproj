@@ -14,4 +14,8 @@
     <PackageReference Include="RazorEngine" Version="3.10.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Services\" />
+  </ItemGroup>
+
 </Project>

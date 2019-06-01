@@ -12,5 +12,6 @@ namespace ScinReport.Models
         virtual public WorkEnum Type { get; set; }
         public DateTime Date { get; set; }
         public string Status { get; set; }
+        public string Text { get; set; }
     }
 }
