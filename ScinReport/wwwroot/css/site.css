@@ -64,9 +64,13 @@ body {
 .body-content {
     padding:50px;
 }
+.menu a {
+    color: aliceblue;
+    text-decoration: none;
+}
 a {
- 
-    text-decoration: none; /*убираем подчеркивание текста ссылок*/
+
+    text-decoration: none;
 }
 ul {
     
@@ -78,4 +82,18 @@ li {
     display: inline;
     padding:10px;
 
+}
+.date-input {
+margin-right:5px;
+}
+.create-zvit-btn {
+    float:right;
+}
+.zvit-form-content {
+
+}
+.zvit-control {
+    height:50px;
+    border-radius:5px;
+    min-width:100%;
 }
