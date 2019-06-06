@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Publication>
+@foreach (var p in Model)
+{
+    <div>
+        <h3>@p.Id.ToString()</h3>
+        @p.Status
+        <h4>@p.TypeId.ToString("c")</h4>
+    </div>
+}
+
