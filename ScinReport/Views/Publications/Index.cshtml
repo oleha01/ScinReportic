@@ -65,12 +65,11 @@
             <th>
                 <input type="checkbox" onclick="checkAll(this);" />
             </th>
-            @if ((await _userManager.GetUsersInRoleAsync("admin")).FirstOrDefault(p => p.Id == _userManager.GetUserId(User)) != null)
-            {
+          
                 <th>
                     Автор
-                </th>
-            }
+               </th>
+            
             <th>
                 Тип
             </th>
@@ -93,12 +92,11 @@
                 <td>
                     <input class="checkbox" id="checkbox_@i" onchange="checkOne(@i,this); " type="checkbox" />
                 </td>
-                @if ((await _userManager.GetUsersInRoleAsync("admin")).FirstOrDefault(p => p.Id == _userManager.GetUserId(User)) != null)
-                {
+              
                     <td>
                         @ViewBag.userWhoDoneThisPublication[i]    
                     </td>
-                }
+                
                 <td>
                     @item.Type.Name
                 </td>
@@ -109,9 +107,23 @@
                     @item.Text
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Редагувати</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Деталі</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Видалити</a>
+
+                    @if (item.IfShared == false && ViewBag.userWhoDoneThisPublication[i] == ViewBag.thisUser)
+                    {
+                        <a asp-action="Share" asp-route-id="@item.Id">Поширити</a>
+                    }
+                    @if (item.IfShared == true && ViewBag.userWhoDoneThisPublication[i] == ViewBag.thisUser)
+                    {
+                        <a asp-action="NoShare" asp-route-id="@item.Id">Перестати поширювати</a>
+                    }
+                    @if (ViewBag.userWhoDoneThisPublication[i] == ViewBag.thisUser)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Редагувати</a>
+                        <a asp-action="Details" asp-route-id="@item.Id">Деталі</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Видалити</a>
+                    }
+
+
                 </td>
             </tr>
             i++;

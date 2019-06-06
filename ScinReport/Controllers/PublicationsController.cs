@@ -48,17 +48,32 @@ namespace ScinReport.Controllers
                         userWork.Add("");
                     }
                 }
-                ViewBag.userWhoDoneThisPublication = userWork;
             }
             else
             {
-                var work_user = _context.Work_Users.Include(p => p.User).Include(p => p.Publication).Include(p => p.Publication.Type).Where(p => p.User.Id == usId);
+                var work_user = _context.Work_Users.Include(p => p.User).Include(p => p.Publication).Include(p => p.Publication.Type).Where(p => p.User.Id == usId || p.Publication.IfShared==true);
                 foreach (var el in work_user)
                 {
                     litForSearch.Add(el.Publication);
+                    userWork.Add(el.User.Email);
                 }
+
             }
+            ViewBag.userWhoDoneThisPublication = userWork;
+            ViewBag.thisUser = (await _userManager.GetUserAsync(User)).Email;
             return View(litForSearch);
+        }
+        public RedirectToActionResult Share(int id)
+        {
+            _context.Publications.Find(id).IfShared = true;
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public RedirectToActionResult NoShare(int id)
+        {
+            _context.Publications.Find(id).IfShared = false;
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
         public async Task<IActionResult> Zvit(DateTime date1,DateTime date2,string textcheckbox)
         {
@@ -178,7 +193,7 @@ namespace ScinReport.Controllers
                         userWork.Add("");
                     }
                 }
-                ViewBag.userWhoDoneThisPublication = userWork;
+                
             }
             else
             {
@@ -186,8 +201,10 @@ namespace ScinReport.Controllers
                 foreach (var el in work_user)
                 {
                     litForSearch.Add(el.Publication);
+                    userWork.Add(el.User.Email);
                 }
             }
+            ViewBag.userWhoDoneThisPublication = userWork;
             if (date2.Year != def.Year)
                 applicationContext = litForSearch.Where(p => p.Date > date1 && p.Date < date2).OrderByDescending(p => p.Date).ToList();
             else
@@ -234,6 +251,7 @@ namespace ScinReport.Controllers
         {
             if (ModelState.IsValid)
             {
+                publication.IfShared = false;
                 _context.Add(publication);
                 await _context.SaveChangesAsync();
                 //   var work_user = new Work_User { WorkId=publication.Id, UserId = int.Parse(_userManager.GetUserId(User))};
